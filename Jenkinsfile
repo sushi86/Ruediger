@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Clean') {
       steps {
-        sh "docker rm -f $(docker ps -aq --filter name=ruediger)"
+        sh "docker rm -f \$(docker ps -aq --filter name=ruediger)"
       }
     }
     stage('Build') {
