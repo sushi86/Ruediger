@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Preparation') {
+    stage('Clean') {
       steps {
-         checkout scm
+        sh "docker rm -f $(docker ps -aq --filter name=ruediger)"
       }
     }
     stage('Build') {
