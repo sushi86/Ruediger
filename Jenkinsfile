@@ -3,7 +3,11 @@ pipeline {
   stages {
     stage('Clean') {
       steps {
-        sh "docker rm -f \$(docker ps -aq --filter name=ruediger)"
+        try {
+          sh "docker rm -f \$(docker ps -aq --filter name=ruediger)"
+        } catch(err) { 
+          echo "error during cleanup containers, maybe no earlier container"
+        }
       }
     }
     stage('Build') {
