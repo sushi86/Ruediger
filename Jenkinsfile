@@ -3,10 +3,7 @@ pipeline {
   stages {
     stage('Preparation') {
       steps {
-        node {
-          label 'scm'
-          checkout scm
-        }
+         checkout scm
       }
     }
     stage('Build') {
