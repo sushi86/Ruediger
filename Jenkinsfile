@@ -4,6 +4,7 @@ pipeline {
     stage('Preparation') {
       steps {
         node {
+          label 'scm'
           checkout scm
         }
       }
