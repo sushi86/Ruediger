@@ -1,14 +1,16 @@
 pipeline {
   agent any
   stages {
-    try {
-      stage('Clean') {
-        steps {
-          sh "docker rm -f \$(docker ps -aq --filter name=ruediger)"
+    stage('Clean') {
+      steps {
+        script {
+          try {
+            sh "docker rm -f \$(docker ps -aq --filter name=ruediger)"
+          } catch(err) { 
+            echo "error during cleanup containers, maybe no earlier container"
+          }
         }
       }
-    } catch(err) { 
-      echo "error during cleanup containers, maybe no earlier container"
     }
     stage('Build') {
       steps {
